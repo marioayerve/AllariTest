@@ -1,0 +1,39 @@
+﻿@using allariProject.Models;
+@model IEnumerable<allariProject.Models.Customers>
+@{
+    ViewBag.Title = "CAR WASH SERVICE";
+    AjaxOptions opt = new AjaxOptions()
+    {
+        Url = Url.Action("getCust"),
+        HttpMethod = "Post",
+        UpdateTargetId = "custD"
+    };
+}
+
+<h2> WELCOME !!</h2>
+
+@using (Ajax.BeginForm(opt))
+{
+    <div class="form-group">
+        <label class="control-label col-sm-3"> Select a Car Wash service: </label>
+        @Html.DropDownList("Id", new SelectList(ViewBag.ServiceList, "ServiceId", "ServiceName"), "Select a service",
+       new { @class = "form-control col-sm-6" })
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+        </tr>
+    </thead>
+    <tbody id="custD">
+    </tbody>
+</table>
+
+@section myAJAX{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

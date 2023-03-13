@@ -1,0 +1,10 @@
+﻿@using allariProject.Models;
+@model IEnumerable<Customers>
+@foreach (Customers s in Model)
+{
+    <tr>
+        <td>@s.Id</td>
+        <td>@s.Name</td>
+        <td>@s.Address</td>
+    </tr>
+}
